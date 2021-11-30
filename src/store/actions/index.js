@@ -1,4 +1,4 @@
-import myService from './myService';
+import request from './request';
 import work from './work';
 import ourCustomers from './ourCustomers';
 import ourEmployees from './ourEmployees';
@@ -8,10 +8,11 @@ import profile from './profile'
 import service from './service';
 import ui from './ui';
 import dashboard from './dashboard';
+import fieldData from './fieldData';
 
 export default {
     user:user,
-    myService:myService,
+    request,
     work:work,
     ourCustomers:ourCustomers,
     ourEmployees:ourEmployees,
@@ -19,5 +20,6 @@ export default {
     profile:profile,
     service:service,
     ui:ui,
-    dashboard:dashboard
+    dashboard:dashboard,
+    fieldData
 }

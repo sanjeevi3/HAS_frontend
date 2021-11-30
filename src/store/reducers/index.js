@@ -8,6 +8,9 @@ import user from './user';
 import profile from './profile'
 import service from './service';
 import ui from './ui';
+import login from './login';
+import register from './register';
+import fieldData from './fieldState';
 
 export default combineReducers({
     user:user,
@@ -18,5 +21,8 @@ export default combineReducers({
     ourServices:ourServices,
     profile:profile,
     service:service,
-    ui:ui
+    ui:ui,
+    login:login,
+    register:register,
+    fieldData
 });

@@ -6,9 +6,9 @@ import actionTypes from './actionTypes'
      getProfile:()=>{
         return (dispatch)=>{
             dispatch(actions.ui.startAPI())
-            setTimeout(()=>{
-                user.get(dispatch)
-            } ,2000)
+                user.getProfile(dispatch)
+            
+            
         }
      },
      updateProfile:(data)=>{
