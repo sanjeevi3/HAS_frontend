@@ -4,43 +4,26 @@ const initialState={
    authorized:false,
    userType:null,
    userId:null,
-   login:null,
-   register:null,
-   error:null,
-   sucsess:null,
-   verification:{
-       sent:"phone"
-   }
+   token:null,
 }
 
 const reducer=(state={...initialState},action)=>{
     switch(action.type){
-        case actionTypes.SUCCESS_LOGIN:
+        case actionTypes.SET_USER:
             return {
                 ...state,
                 authorized:true,
                 userType:action.userType,
-                userId:0
+                userId:action.userId,
+                token:action.token,
             }
-        case actionTypes.FAILURE_LOGIN:
+        case actionTypes.REMOVED_USER:
             return {
                 ...state,
-                error:action.error
-            }
-        case actionTypes.SENT_URL:
-            return {
-                ...state,
-                verification:{
-                    ...state.verification,
-                    ...action.verification
-                }
-            }
-            case actionTypes.REMOVED_USER:
-               
-            return {
-                ...state,
+                authorized:false,
                 userType:null,
-                authorized:false
+                userId:null,
+                token:null,
             }
       default:
           return state;
