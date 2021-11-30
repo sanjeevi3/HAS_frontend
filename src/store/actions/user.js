@@ -3,13 +3,22 @@ import user from '../../api/user'
 import actionTypes from './actionTypes'
 
  export default  {
-    login:(data)=>{
+    login:(data ,history)=>{
         
         return (dispatch)=>{
+            console.log("data",data)
             dispatch(actions.ui.startAPI())
-            setTimeout(()=>{
-                user.login(dispatch,data)
-            },2000)
+                user.login(dispatch,data,history)
+            
+        }
+    },
+    register:(data ,history)=>{
+        
+        return (dispatch)=>{
+            console.log("data",data)
+            dispatch(actions.ui.startAPI())
+                user.register(dispatch,data,history)
+            
         }
     },
     sentURL:(data,url)=>{

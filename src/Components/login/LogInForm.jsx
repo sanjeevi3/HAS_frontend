@@ -1,4 +1,4 @@
-import { Fragment,useState } from "react";
+import { Fragment,useState,useEffect } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import actions from "../../store/actions"
@@ -8,10 +8,30 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 const LogInForm=(props)=>{
-    
+    const {register,handleSubmit,watch,errors,setError} = useForm()
     const history=useHistory()
-    console.log(history)
-    const {register,handleSubmit,watch,errors} = useForm()
+    const currentPath=history.location.pathname
+    useEffect(()=>{
+    if(props.error){
+        for (const key in props.error) {
+            setError(key,{
+                type:"server",
+                message:props.error[key]
+            })    
+            
+        }
+        
+    }
+       
+     return ()=>{
+         console.log(history.location.pathname==currentPath)
+        console.log("delete")
+     }  
+    },[props])
+    
+    
+    
+    
     const inputs = [
         {
             elementType:"input",
@@ -42,12 +62,13 @@ const LogInForm=(props)=>{
     ]
     
     const logInHandler=(data)=>{
-        props.login(data.password==="admin"||data.password==="customer"||data.password==="worker"?data:{})
-
+        console.log(data)
+        const formdata=JSON.stringify(data)
        
-        if(props.authorized){
-            history.push("profile")
-        }
+        props.login(formdata,history)
+        
+       
+               
     }
     return(
         <form onSubmit={handleSubmit(logInHandler)}>
@@ -80,14 +101,14 @@ const LogInForm=(props)=>{
 }
 const mapStateToProps=(state)=>{
     return{
-        authorized:state.user.authorized,
-        userType:state.user.userType
+        login:state.login.success,
+        error:state.login.error
     }
 }
 
 const mapDispatchToProps=(dispatch)=>{
     return{
-        login:(data)=>dispatch(actions.user.login(data))
+        login:(data,history)=>dispatch(actions.user.login(data,history))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(LogInForm);

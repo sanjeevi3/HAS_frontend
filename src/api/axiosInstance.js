@@ -5,8 +5,8 @@ const axiosInstance = ()=>{
     console.log("state",state)
     return axios.create({
         headers:{
-            "Content-Type": "application/json"
-           // Authorization:`Bearer`
+            "Content-Type": "application/json",
+             "Authorization":state.user.token?`Bearer ${state.user.token}`:""
         },
        
         baseURL:"http://localhost:3030/api/"

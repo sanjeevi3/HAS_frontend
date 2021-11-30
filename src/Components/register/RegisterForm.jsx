@@ -1,4 +1,4 @@
-import { Fragment,useState } from "react";
+import { Fragment,useState,useEffect } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import actions from "../../store/actions"
@@ -7,8 +7,26 @@ import { useHistory } from "react-router";
 import { connect } from "react-redux";
 
 const RegisterForm=(props)=>{
-    const history=useHistory();
-    const {register,handleSubmit,watch,errors} = useForm()
+    const {register,handleSubmit,watch,errors,setError} = useForm()
+    const history=useHistory()
+    const currentPath=history.location.pathname
+    useEffect(()=>{
+        if(props.error){
+            for (const key in props.error) {
+                setError(key,{
+                    type:"server",
+                    message:props.error[key]
+                })    
+                
+            }
+            
+        }
+           
+         return ()=>{
+             console.log(history.location.pathname==currentPath)
+            console.log("delete")
+         }  
+        },[props])
     const password=watch("password")
     const registerAsWorker=watch("worker")
     console.log(password)
@@ -71,6 +89,34 @@ const RegisterForm=(props)=>{
                 elementType:"input",
                 elementConfig:{
                     type:"text",
+                    name:"user_name",
+                    placeholder:"User Name"
+                },
+                label:"User Name",
+                validation:{
+                    required:"The User Name Field is Required",
+                    minLength:{
+                        value:5,
+                        message:"Minimum Length is 5"
+                    },
+                    maxLength:{
+                        value:30,
+                        message:"Minimum Length is 20"
+                    },
+                    pattern:{
+                        value:/[A-Za-z0-9]/,
+                        message:"User Name only in Alphabets and Numbers"
+                    }
+                    
+
+
+                },
+                
+            },
+            {
+                elementType:"input",
+                elementConfig:{
+                    type:"text",
                     name:"phone",
                     placeholder:"Phone"
                 },
@@ -115,20 +161,6 @@ const RegisterForm=(props)=>{
                         value:/^[a-z][a-z0-9]{3,}@[a-z]{5,}\.[a-z]{2,}$/,
                         message:"Enter Correct Email Format"
                     }
-                },
-                
-            },
-            {
-                elementType:"input",
-                elementConfig:{
-                    type:"date",
-                    name:"date_of_birth",
-                    placeholder:"User Name,Email Id"
-                },
-                label:"Date Of Birth",
-                validation:{
-                    required:"The Date of Birth Field is Required",
-                    valueAsDate:true
                 },
                 
             },
@@ -180,7 +212,7 @@ const RegisterForm=(props)=>{
                 },
                
             },
-            {
+            /*{
                 elementType:"select",
                 elementConfig:{
                    
@@ -262,35 +294,13 @@ const RegisterForm=(props)=>{
     
                 },
                
-            },
+            },*/
 
         ]
-        if(registerAsWorker){
-            inputs=[
-                ...inputs,
-                {
-                    elementType:"multi input",
-                    elementConfig:{
-                        type:"checkbox",
-                        name:"sevice",
-                        
-                    },
-                    inputs:[
-                        {value:"plumber",label:"Plumber"},
-                        {value:"AC mechanic",label:"AC Mechanic"},
-                        {value:"refregirator mechanic",label:"Refregirator Mechanic"}
-                    ],
-                    label:"Worker Type",
-                    validation:{
-                        required:"The Gender is Required"
-                    },
-                    
-                }
-            ]
-        }
+        
     
     const RegisterHandler=(data)=>{
-        props.register(data)
+        props.register(data,history)
        
     }
     return(
@@ -327,7 +337,13 @@ const RegisterForm=(props)=>{
 
 const mapDispatchToProps=(dispatch)=>{
     return{
-        register:(data)=>dispatch(actions.user.register(data))
+        register:(data,history)=>dispatch(actions.user.register(data,history))
     }
 }
-export default connect(null,mapDispatchToProps)(RegisterForm);
+const mapStateToProps=(state)=>{
+    return{
+        data:state.register.data,
+        error:state.register.error
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(RegisterForm);
