@@ -4,39 +4,53 @@ import actionTypes from '../actions/actionTypes'
 
 const initialState={
    loader:false,
-   modal:null,
-   error:null,
-   success:true
+   modal:{
+       tittle:null,
+       body:null,
+       success:null,
+       failure:null,
+       successClick:null,
+       failureClick:null,
+       open:false
+   }
 }
 
 const reducer=(state={...initialState},action)=>{
     switch(action.type){
         case actionTypes.START_API:
             return {
-                modal:null,
-                error:null,
-                loader:true,
-                success:null
+                ...state,
+                loader:true
             }
             case actionTypes.END_API:
       
             return {
                 ...state,
-               ...action.data,
                 loader:false,
+               ...action.data
+                
             }
             
-            case actionTypes.UPDATE_MODAL:
+            case actionTypes.OPEN_MODAL:
                 return{
                     ...state,
-                    modal:action.modal
+                    modal:{
+                        ...state.modal,
+                        ...action.modal
+                    }
                 }
         case actionTypes.CLOSE_MODAL:
                 return{
                     ...state,
-                    modal:null,
-                    error:null,
-                    success:null
+                    modal:{
+                        tittle:null,
+                        body:null,
+                        success:null,
+                        failure:null,
+                        successClick:null,
+                        failureClick:null,
+                        open:false
+                    }
                 }
       default:
           return state;
