@@ -2,6 +2,10 @@ import actionTypes from './actionTypes'
 import actions from '.'
 import requestAPI from '../../api/request'
  export default  {
+     /* 
+        its call getServiceTypes action its callback true then call get address list action
+        param1 - useHistory
+     */
      addRequestFieldData:(history)=>{
         return dispatch =>{
             dispatch(actions.ui.startAPI());
@@ -15,6 +19,13 @@ import requestAPI from '../../api/request'
             }))
         }
      },
+
+     /* 
+        its call addRequest api its success then show message modal otherwise show error modal
+        param1 - add request form data
+        param2 - useHistory
+        param3 - setState of component
+     */
      addRequest:(data,history,setState)=>{
          return dispatch=>{
              dispatch(actions.ui.startAPI());

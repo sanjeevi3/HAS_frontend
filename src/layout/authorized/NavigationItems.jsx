@@ -5,6 +5,7 @@ import NavigationItem from "./NavigationItem"
 import actions from './../../store/actions'
 
 const Navigation=(props)=>{
+    console.log("Navigation")
     const navigationItems=[
         {
         name:"profile",

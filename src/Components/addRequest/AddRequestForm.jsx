@@ -9,11 +9,22 @@ import actions from "../../store/actions"
 const { default: Button } = require("../UI/Button")
 const { default: Input } = require("../UI/Input")
 
+//this component is used for display add request form and form handling
+/* 
+    props
+    address_list - it contains total number of address of user
+    service_types - it contains total number of service types
+    addRequest - this function do add request  api config
+    getAddressList - this function do get service types  api config
+*/
+
 const AddRequestForm=props=>{
-    const [state,setState] = useState({})
+    console.log("AddRequestForm");
+    const [state,setState] = useState({error:null})
     const {register,handleSubmit,watch,errors,setError} =useForm()
     useEffect(()=>{
-        if(props.error){
+        // If error from server then set error
+        if(state.error){
             for (const key in props.error) {
                 setError(key,{
                     type:"server",
@@ -25,8 +36,6 @@ const AddRequestForm=props=>{
         }
         },[state])
     const history = useHistory();
-   
-    const changeAddress=watch("change_address")
     let inputs =[];
         if(!(props.address_list&&props.service_types))
         props.addRequestFieldData(history)
@@ -71,8 +80,7 @@ const AddRequestForm=props=>{
                 },
             ]
         }
-    
-    console.log(inputs)
+
    const addRequestFormHandler=data=>{
 
   props.addRequest(data,history,setState);

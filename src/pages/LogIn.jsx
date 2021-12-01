@@ -4,7 +4,7 @@ import LogInCard from '../Components/login/LogInCard';
 import LogInForm from '../Components/login/LogInForm';
 
 const LogIn=(props)=>{
-    
+    console.log("LogIn")
     
     return(
         <div className="row justify-content-center pt-5">

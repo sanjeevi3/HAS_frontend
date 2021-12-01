@@ -3,6 +3,13 @@ import user from '../../api/user'
 import actionTypes from './actionTypes'
 
  export default  {
+
+    /* 
+        its call login api
+        param1- login form data
+        param2 - useHistory
+    */
+
     login:(data ,history)=>{
         
         return (dispatch)=>{
@@ -12,6 +19,11 @@ import actionTypes from './actionTypes'
             
         }
     },
+    /* 
+        its call register api
+        param1- register form data
+        param2 - useHistory
+    */
     register:(data ,history)=>{
         
         return (dispatch)=>{

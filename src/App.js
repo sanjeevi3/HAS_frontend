@@ -1,30 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import LogIn from './pages/LogIn';
-import { Switch,BrowserRouter as Router,Route, Redirect } from "react-router-dom";
-import Register from './pages/Register';
-import { connect } from 'react-redux';
+import { BrowserRouter as Router } from "react-router-dom";
 import Routes from './routes';
 
+//this file is root of our project
 function App(props) {
-  console.log("app.js re-render")
+  console.log("app.js")
   return (
     <div >
-       <Router >
-    
-      
-    
-     <Routes />
-  
-   
- </Router>
+      {/* using browser router */}
+      <Router >
+        {/* add custom routes by routes component */}
+        <Routes />
+      </Router>
     </div>
-   
+
   );
 }
-const mapStateToProps=state=>{
-  return{
-    
-  }
-}
-export default connect(mapStateToProps)(App);
+
+export default App;

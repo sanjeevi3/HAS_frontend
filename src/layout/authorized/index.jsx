@@ -1,14 +1,14 @@
 import {useState} from "react"
-import { connect } from "react-redux";
 import BackDrop from "../../Components/UI/BackDrop";
 import Loader from "../../Components/UI/Loader";
-import Modal from "../../Components/UI/Modal";
 import MyModal from "../../Components/UI/MyModal";
 import Header from "./Header";
 import NavigationItems from "./NavigationItems";
 
+// this is authorized layout for user
 
 const Authorized=(props)=>{
+  console.log("auth layout")
   const [state, setstate] = useState({sideDrawer:false,backDrop:false})
 const menuToggleClickHandler=()=>{
   
@@ -47,9 +47,5 @@ const removeSideDrawer=()=>{
       </>
     )
 }
-const mapStateToProps=state=>{
-  return{
-   
-  }
-}
-export default connect(mapStateToProps)(Authorized);
+
+export default Authorized;

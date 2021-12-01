@@ -1,5 +1,5 @@
-import actionTypes from './actionTypes'
-import actions from './index'
+import actionTypes from './actionTypes';
+
  export default  {
     startAPI:(userType)=>{
         

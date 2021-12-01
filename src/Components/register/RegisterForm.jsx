@@ -6,7 +6,15 @@ import {useForm} from 'react-hook-form'
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
 
+// this componnent return register form and form handling
+/* 
+    props
+    data - it contains register form data
+    error - it contains register form server error
+    register - it do register api congiguration
+*/
 const RegisterForm=(props)=>{
+    console.log("RegisterForm")
     const {register,handleSubmit,watch,errors,setError} = useForm()
     const history=useHistory()
     const currentPath=history.location.pathname
@@ -23,13 +31,11 @@ const RegisterForm=(props)=>{
         }
            
          return ()=>{
-             console.log(history.location.pathname==currentPath)
-            console.log("delete")
+            
          }  
         },[props])
     const password=watch("password")
     const registerAsWorker=watch("worker")
-    console.log(password)
     let inputs = [
             {
                 elementType:"input",

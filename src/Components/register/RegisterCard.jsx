@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 
 const RegisterCard=(props)=>{
+    console.log("RegisterCard")
     return(
         <div className="col-md-8 col-11 card login-card">
                     <div className=" col-12 py-5 px-3">

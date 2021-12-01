@@ -9,7 +9,7 @@ import NavigationItems from "../authorized/NavigationItems";
 
 
 const NotAuthorized=(props)=>{
- 
+  console.log("layout")
     return(
         <>
       <Header/>

@@ -5,38 +5,30 @@ import Modal from "./Modal"
 
 const { default: BackDrop } = require("./BackDrop")
 const { default: Button } = require("./Button")
+// custom modal for error and suceess messages
+/* 
+    props
+    modal - it has modal configuration
+*/
 
-const MyModal=props=>{
-    const history=useHistory()
-    let modal 
-    const modalClose=()=>{
-        props.closeModal()
-        history.push("/profile")
-    }
-    
-    
-               
-                
-              
-      
-   
-    return(
-       <Modal
-       tittle={props.modal.tittle}
-       body={props.modal.body}
-       open={props.modal.open}
-       failure={props.modal.failure}
-       failureClick={props.modal.failureClick}
-       success={props.modal.success}
-       successClick={props.modal.successClick}
-       >
-
-       </Modal>
+const MyModal = props => {
+    console.log("MyModal")
+    return (
+        <Modal
+            tittle={props.modal.tittle}
+            open={props.modal.open}
+            failure={props.modal.failure}
+            failureClick={props.modal.failureClick}
+            success={props.modal.success}
+            successClick={props.modal.successClick}
+        >
+            {props.modal.body}
+        </Modal>
     )
 }
-const mapStateToProps=(state)=>{
-    return{
-        modal:state.ui.modal
+const mapStateToProps = (state) => {
+    return {
+        modal: state.ui.modal
     }
 }
 

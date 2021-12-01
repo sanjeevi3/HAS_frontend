@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import action from "../../store/actions"
 const NavigationItem=props=>{
+    console.log("NavigationItem "+props.navigationItem.name)
     const history=useHistory()
     const linkClickHandler=()=>{
         props.removeSideDrawer();

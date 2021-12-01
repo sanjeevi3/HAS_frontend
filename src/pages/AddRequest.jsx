@@ -4,10 +4,11 @@ const { default: AddServiceForm } = require("../Components/addRequest/AddRequest
 const { default: CardHeader } = require("../Components/UI/CardHeader")
 
 const AddRequest=props=>{
-    
+    console.log("AddRequest")
 
     return(
        <Fragment>
+           
             <CardHeader>Add Service</CardHeader>
             <div className="body">
                 <AddServiceForm  />

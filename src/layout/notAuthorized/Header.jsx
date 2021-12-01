@@ -1,6 +1,7 @@
 
 
 const Header=(props)=>{
+    console.log("header")
     return(
         <header  >
             <div className="row mx-0">

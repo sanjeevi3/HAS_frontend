@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
-import LogInForm from "./LogInForm";
-
-
+// this component for card as login
+/* 
+    props
+    tittle - page name
+*/
 const LogInCard=(props)=>{
-    console.log("login card render")
+    console.log("login card")
     return(
         <div className="col-md-8 col-11 card login-card">
                 <div className="row ">
